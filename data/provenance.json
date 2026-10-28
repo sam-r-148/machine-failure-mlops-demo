@@ -1,0 +1,11 @@
+{
+  "source": "Kaggle",
+  "dataset_slug": "stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+  "page": "https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+  "archive_member": "ai4i2020.csv",
+  "download_method": "Kaggle download API",
+  "sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e",
+  "rows": 10000,
+  "assignment_dataset": true
+}

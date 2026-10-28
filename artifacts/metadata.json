@@ -1,0 +1,50 @@
+{
+  "model_version": "maintenance-rf-v1",
+  "features": [
+    "Type",
+    "Air temperature [K]",
+    "Process temperature [K]",
+    "Rotational speed [rpm]",
+    "Torque [Nm]",
+    "Tool wear [min]"
+  ],
+  "classes": [
+    0,
+    1
+  ],
+  "train_rows": 8000,
+  "test_rows": 2000,
+  "random_state": 42,
+  "decision_threshold": 0.3706400597335668,
+  "threshold_selection": "Max F2 on training-only 3-fold out-of-fold predictions",
+  "training_oof_average_precision": 0.8914088015550561,
+  "metrics": {
+    "average_precision": 0.8803783923353562,
+    "roc_auc": 0.9788507794422117,
+    "precision": 0.890625,
+    "recall": 0.8382352941176471,
+    "f2": 0.8482142857142857,
+    "accuracy": 0.991,
+    "baseline_average_precision": 0.034,
+    "test_failure_prevalence": 0.034
+  },
+  "dataset": {
+    "source": "Kaggle",
+    "dataset_slug": "stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+    "page": "https://www.kaggle.com/datasets/stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+    "download_url": "https://www.kaggle.com/api/v1/datasets/download/stephanmatzka/predictive-maintenance-dataset-ai4i-2020",
+    "archive_member": "ai4i2020.csv",
+    "download_method": "Kaggle download API",
+    "sha256": "dc6630cd9b1f0f853922fad78a1b6436570d3f1ec863f1dd5c4340ac56bc8a8e",
+    "rows": 10000,
+    "assignment_dataset": true
+  },
+  "python_version": "3.12.10",
+  "sklearn_version": "1.9.0",
+  "limitations": [
+    "Synthetic data; record-level random split may be optimistic.",
+    "Current-state classification, not future-failure forecasting.",
+    "Uncalibrated probabilities; no machine-specific history.",
+    "No automatic production drift detection or retraining."
+  ]
+}

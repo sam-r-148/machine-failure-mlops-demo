@@ -1,0 +1,14 @@
+.git
+.github
+.venv
+__pycache__
+.pytest_cache
+notebooks
+tests
+data
+scripts
+dist
+*.log
+.env*
+kaggle.json
+.runtime
