@@ -23,6 +23,7 @@ jobs:
           python3 - <<'PY'
           """Test real HTTP endpoints against the local or Docker API."""
           import json
+          import http.client
           import sys
           import time
           import urllib.error
@@ -47,7 +48,7 @@ jobs:
                   try:
                       assert request("/health")["status"] == "ok"
                       break
-                  except (urllib.error.URLError, TimeoutError):
+                  except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.RemoteDisconnected):
                       time.sleep(1)
               else:
                   raise RuntimeError("API not healthy")
