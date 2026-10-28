@@ -1,5 +1,4 @@
 """Serve the maintenance pipeline trained in the Jupyter notebook."""
-import json
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -12,7 +11,7 @@ from fastapi import FastAPI, Request
 from pydantic import BaseModel, ConfigDict, Field
 from app.features import FEATURES
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 
 class Measurements(BaseModel):
     model_config = ConfigDict(extra="forbid", allow_inf_nan=False)
@@ -37,14 +36,14 @@ def to_frame(item):
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    path = ROOT / "artifacts/model.joblib"
+    path = ROOT / "model.joblib"
     if not path.exists():
-        raise RuntimeError("Model missing. Download Kaggle data and run notebooks/01_train_maintenance.ipynb in Jupyter.")
+        raise RuntimeError("Model missing. Place the saved model.joblib beside main.py.")
     # joblib loads trusted project artifacts only.
-    app.state.metadata = json.loads((ROOT / "artifacts/metadata.json").read_text())
+    app.state.model = joblib.load(path)
+    app.state.metadata = app.state.model.metadata_
     if app.state.metadata["sklearn_version"] != sklearn.__version__:
         raise RuntimeError("Model/runtime scikit-learn versions differ; install requirements.txt or retrain.")
-    app.state.model = joblib.load(path)
     if app.state.metadata["model_version"] != "maintenance-rf-v1":
         raise RuntimeError("Wrong model: retrain the maintenance notebook.")
     app.state.requests = 0

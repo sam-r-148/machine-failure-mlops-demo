@@ -1,2 +1,0 @@
-# Preserve the original Kaggle bytes for provenance checksum validation.
-data/predictive_maintenance.csv -text
